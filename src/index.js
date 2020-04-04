@@ -1,10 +1,12 @@
+require('dotenv').config();
+
 const mongodb = require('mongodb');
 const fs = require('fs');
 const path = require('path');
 const _ = require('underscore');
 
-const url = 'mongodb://localhost:27023';
-const filesDir = "/Users/pedropapadopolis/Documents/45.77.74.59/scriptfiles/";
+const url = process.env.MONGO_URL;
+const filesDir = process.env.FILES_DIR;
 const trackedExtensions = ['.ini', '.txt', '.brz'];
 
 mongodb.connect(url, async (err, client) => {
@@ -14,7 +16,7 @@ mongodb.connect(url, async (err, client) => {
 
   console.log("Conectado ao banco de dados.");
 
-  const db = client.db("rpgmgs");
+  const db = client.db(process.env.MONGO_DATABASE);
 
   try {
     await syncDir(db, filesDir);
