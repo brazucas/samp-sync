@@ -1,4 +1,4 @@
-## RPGMGS SYNC
+## SAMP SYNC
 
 Lê toda a árvore de arquivos persistidos do servidor e alimenta um banco de dados não relacional, atualmente hardcoded para o MongoDB.
 
