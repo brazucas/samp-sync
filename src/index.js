@@ -38,7 +38,7 @@ const syncDir = async (db, dir, parentCollection) => {
     const extension = fileInfo.ext;
     const fileName = fileInfo.name;
 
-    let collectionName = parentCollection ? parentCollection : absolutePath
+    let collectionName = absolutePath
       .replace(filesDir, "")
       .replace(files[i], "")
     ;
@@ -48,6 +48,8 @@ const syncDir = async (db, dir, parentCollection) => {
     }
 
     collectionName = parseCollectionName(collectionName);
+
+    // console.log('>>>> collectionOrigin ', collectionOrigin);
 
     if (stat.isDirectory()) {
       await syncDir(db, absolutePath, collectionName);
@@ -73,6 +75,8 @@ const addToBuffer = (buffer, collection, ini) => {
   if (!buffer[collection]) {
     buffer[collection] = [];
   }
+
+  ini['MONGODB_SYNC'] = new Date();
 
   buffer[collection].push(ini);
 };
