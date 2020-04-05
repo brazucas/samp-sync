@@ -119,7 +119,7 @@ const flushBuffer = async (db, buffers) => {
 };
 
 const parseIni = (contents) => {
-  const lines = contents.split("\r\n");
+  const lines = contents.split("\n");
 
   const model = {};
 
@@ -132,7 +132,7 @@ const parseIni = (contents) => {
     }
 
     const property = split[0];
-    const value = split.splice(1).join("=");
+    const value = split.splice(1).join("=").replace(/\r?\n|\r/g, "");
 
     if (!property || !property.trim().length) {
       continue;
