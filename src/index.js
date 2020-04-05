@@ -82,7 +82,8 @@ const addToBuffer = (buffer, collection, ini) => {
 };
 
 const parseCollectionName = (collectionName) => {
-  return collectionName.replace(/\/$/, "").replace(/\//g, "_").toLowerCase();
+  const linux = collectionName.replace(/\/$/, "").replace(/\//g, "_").toLowerCase();
+  return linux.replace(/\\$/, "").replace(/\\/g, "_").toLowerCase(); // Windows
 };
 
 const flushBuffer = async (db, buffers) => {
